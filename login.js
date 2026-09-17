@@ -1,3 +1,5 @@
+import { supabaseClient } from "./supabase-config.js";
+
 const form = document.getElementById("loginForm");
 
 const emailInput = document.getElementById("email");
@@ -50,8 +52,11 @@ form.addEventListener("submit", async function(event) {
 
 
     // ==========================================
-    // CONSULTAR BANCO DE DADOS
+    // LOGIN NO SUPABASE AUTH
     // ==========================================
+    // A senha é validada APENAS pelo Supabase Auth.
+    // Nenhuma consulta é feita em public.profiles
+    // para validar senha.
 
     try {
 
@@ -59,63 +64,63 @@ form.addEventListener("submit", async function(event) {
         mensagem.style.color = "#555";
 
 
-        const resposta = await fetch(
-            "http://localhost:3000/api/login",
-            {
-                method: "POST",
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: senha
+            });
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
 
-                body: JSON.stringify({
-                    email: email,
-                    senha: senha
-                })
+        if (error) {
+
+            const erroMsg = error.message || "";
+
+            if (
+                erroMsg.toLowerCase().includes(
+                    "invalid login credentials"
+                )
+            ) {
+
+                mensagem.textContent =
+                    "E-mail ou senha inválidos.";
+
+            } else if (
+                erroMsg.toLowerCase().includes(
+                    "email not confirmed"
+                )
+            ) {
+
+                mensagem.textContent =
+                    "Confirme seu e-mail antes de fazer login.";
+
+            } else {
+
+                mensagem.textContent =
+                    erroMsg || "E-mail ou senha inválidos.";
+
             }
-        );
 
-
-        const dados = await resposta.json();
-
-
-        // ==========================================
-        // LOGIN CORRETO
-        // ==========================================
-
-        if (resposta.ok && dados.success) {
-
-            mensagem.textContent =
-                "Login realizado com sucesso!";
-
-            mensagem.style.color = "green";
-
-
-            localStorage.setItem(
-                "usuarioPortfolio",
-                JSON.stringify(dados.user)
-            );
-
-
-            setTimeout(function() {
-
-                window.location.href = "home.html";
-
-            }, 1000);
-
+            mensagem.style.color = "red";
 
             return;
         }
 
 
         // ==========================================
-        // LOGIN INCORRETO
+        // LOGIN REALIZADO COM SUCESSO
         // ==========================================
 
         mensagem.textContent =
-            "E-mail ou senha inválidos.";
+            "Login realizado com sucesso!";
 
-        mensagem.style.color = "red";
+        mensagem.style.color = "green";
+
+
+        setTimeout(function() {
+
+            window.location.href = "home.html";
+
+        }, 1000);
 
 
     } catch (erro) {

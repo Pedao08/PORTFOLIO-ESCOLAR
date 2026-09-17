@@ -1,51 +1,67 @@
+import { supabaseClient } from "./supabase-config.js";
+
 const saudacaoUsuario = document.getElementById("saudacaoUsuario");
 const btnVoltarLogin = document.getElementById("btnVoltarLogin");
 
-// Recuperar os dados do usuário que fez login
-const usuarioSalvo = localStorage.getItem("usuarioPortfolio");
 
+// ==========================================
+// PROTEGER A PÁGINA: SÓ ENTRA SE LOGADO
+// ==========================================
 
-// Verificar se existe um usuário logado
-if (!usuarioSalvo) {
-
-    // Se não existir, voltar para o login
-    window.location.href = "index.html";
-
-} else {
+async function verificarSessao() {
 
     try {
 
-        // Transformar os dados salvos em objeto
-        const usuario = JSON.parse(usuarioSalvo);
+        // 1. Verificar se existe usuário autenticado
+        const { data, error } =
+            await supabaseClient.auth.getUser();
 
-        // Mostrar o nome do usuário
-        if (usuario.nome) {
+        // 2. Se não houver sessão, voltar para o login
+        if (error || !data.user) {
 
-            saudacaoUsuario.textContent =
-                `Olá, ${usuario.nome}!`;
+            window.location.href = "index.html";
+            return;
+        }
 
-        } else {
+        // 3. Buscar SOMENTE o perfil do usuário atual.
+        //    O RLS garante que ninguém lê o perfil dos
+        //    outros usuários.
+        let nome = data.user.user_metadata?.nome || "";
 
-            saudacaoUsuario.textContent =
-                "Olá!";
+        const { data: perfil, error: erroPerfil } =
+            await supabaseClient
+                .from("profiles")
+                .select("nome")
+                .eq("id", data.user.id)
+                .maybeSingle();
+
+        if (perfil && perfil.nome) {
+
+            nome = perfil.nome;
+
+        } else if (erroPerfil) {
+
+            console.warn(
+                "Não foi possível ler o perfil:",
+                erroPerfil.message
+            );
 
         }
+
+        // 4. Exibir o nome do usuário
+        saudacaoUsuario.textContent =
+            nome ? `Olá, ${nome}!` : "Olá!";
 
     } catch (erro) {
 
         console.error(
-            "Erro ao ler os dados do usuário:",
+            "Erro ao verificar a sessão:",
             erro
         );
 
-        // Remover dados inválidos
-        localStorage.removeItem(
-            "usuarioPortfolio"
-        );
-
-        // Voltar para o login
         window.location.href = "index.html";
     }
+
 }
 
 
@@ -55,15 +71,17 @@ if (!usuarioSalvo) {
 
 btnVoltarLogin.addEventListener(
     "click",
-    function () {
+    async function () {
 
-        // Remover usuário salvo
-        localStorage.removeItem(
-            "usuarioPortfolio"
-        );
+        // Encerrar a sessão no Supabase
+        await supabaseClient.auth.signOut();
 
         // Voltar para a tela de login
         window.location.href =
             "index.html";
+
     }
 );
+
+
+verificarSessao();

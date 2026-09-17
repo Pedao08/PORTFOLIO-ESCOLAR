@@ -1,3 +1,5 @@
+import { supabaseClient } from "./supabase-config.js";
+
 const form =
     document.getElementById("cadastroForm");
 
@@ -101,8 +103,14 @@ form.addEventListener(
 
 
         // ==================================
-        // CADASTRAR NO SERVIDOR
+        // CADASTRO NO SUPABASE AUTH
         // ==================================
+        // A senha é gerenciada SOMENTE pelo
+        // Supabase Auth (não é salva em nenhuma
+        // tabela própria). O nome é enviado como
+        // metadado e o perfil em public.profiles
+        // é criado automaticamente por um trigger
+        // no PostgreSQL.
 
         try {
 
@@ -113,68 +121,98 @@ form.addEventListener(
                 "#555";
 
 
-            const resposta =
-                await fetch(
-                    "http://localhost:3000/api/cadastro",
-                    {
+            const { data, error } =
+                await supabaseClient.auth.signUp({
 
-                        method: "POST",
+                    email: email,
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+                    password: senha,
 
-                        body: JSON.stringify({
+                    options: {
 
-                            nome: nome,
+                        data: {
 
-                            email: email,
+                            nome: nome
 
-                            senha: senha
-
-                        })
+                        }
 
                     }
-                );
+
+                });
 
 
-            const dados =
-                await resposta.json();
+            if (error) {
 
+                const erroMsg = error.message || "";
 
-            if (dados.success) {
+                if (
+                    erroMsg.toLowerCase().includes(
+                        "already registered"
+                    )
+                ) {
 
-                mensagem.textContent =
-                    "Cadastro realizado com sucesso!";
+                    mensagem.textContent =
+                        "Este e-mail já está cadastrado.";
 
-                mensagem.style.color =
-                    "green";
+                } else {
 
+                    mensagem.textContent =
+                        erroMsg ||
+                        "Erro ao realizar cadastro.";
 
-                form.reset();
-
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "index.html";
-
-                }, 1200);
-
-            }
-
-
-            else {
-
-                mensagem.textContent =
-                    dados.message ||
-                    "Erro ao realizar cadastro.";
+                }
 
                 mensagem.style.color =
                     "red";
 
+                return;
+
             }
+
+
+            // ==================================
+            // SUCESSO
+            // ==================================
+
+            if (data.session) {
+
+                // Confirmação de e-mail DESATIVADA:
+                // o usuário já está logado e entra direto.
+                mensagem.textContent =
+                    "Cadastro realizado com sucesso!";
+
+            } else {
+
+                // Confirmação de e-mail ATIVADA:
+                // aguardar o clique no link do e-mail.
+                mensagem.textContent =
+                    "Cadastro realizado! " +
+                    "Confirme seu e-mail para ativar a conta.";
+
+            }
+
+            mensagem.style.color =
+                "green";
+
+
+            form.reset();
+
+
+            setTimeout(() => {
+
+                if (data.session) {
+
+                    window.location.href =
+                        "home.html";
+
+                } else {
+
+                    window.location.href =
+                        "index.html";
+
+                }
+
+            }, 1500);
 
         }
 

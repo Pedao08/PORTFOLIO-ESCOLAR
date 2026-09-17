@@ -1,0 +1,392 @@
+/* ==========================================================
+   HUB DE ÁREAS — ARANHAVERSO
+   Cada card recebe a personalidade de um herói
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    color: white;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(18, 63, 140, 0.35), transparent 45%),
+        radial-gradient(circle at 15% 90%, rgba(217, 4, 41, 0.30), transparent 45%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 9px),
+        linear-gradient(-120deg, #081630, #0a1e4d, #071028, #0b0b10);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 65vmin;
+    height: 65vmin;
+    pointer-events: none;
+    z-index: -1;
+}
+
+header {
+    position: relative;
+    z-index: 1;
+    height: 70px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.areas-container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 10px auto 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+    position: relative;
+    z-index: 1;
+}
+
+.area-card {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #101018;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.35s ease;
+    position: relative;
+}
+
+.area-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.area-card:hover {
+    transform: translateY(-8px);
+}
+
+.area-card:hover img {
+    transform: scale(1.04);
+}
+
+.rotulo {
+    display: block;
+    padding: 14px 16px;
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 26px;
+    letter-spacing: 2.5px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+    border-top: 3px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.rotulo small {
+    display: block;
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+
+/* ==========================================================
+   PERSONALIDADES DOS CARDS
+   ========================================================== */
+
+/* --- HUMANAS: Homem-Aranha Noir (preto & branco) --- */
+.area-card[data-tema="noir"] {
+    border-color: #9a9a9a;
+}
+
+.area-card[data-tema="noir"] img {
+    filter: grayscale(1) contrast(1.1);
+}
+
+.area-card[data-tema="noir"] .rotulo {
+    color: #ffffff;
+    background: linear-gradient(90deg, #1a1a1a, #3d3d3d, #1a1a1a);
+}
+
+.area-card[data-tema="noir"]:hover {
+    box-shadow:
+        0 16px 44px rgba(0, 0, 0, 0.65);
+}
+
+
+/* --- LINGUAGENS: Aranha-Gwen (rosa/ciano) --- */
+.area-card[data-tema="gwen"] {
+    border-color: #f14d9f;
+}
+
+.area-card[data-tema="gwen"] .rotulo {
+    color: #ffffff;
+    background: linear-gradient(90deg, #f14d9f, #35c4e8, #f14d9f);
+}
+
+.area-card[data-tema="gwen"]:hover {
+    border-color: #35c4e8;
+    box-shadow: 0 16px 44px rgba(241, 77, 159, 0.45);
+}
+
+
+/* --- NATUREZA: Miles Morales (vermelho grafite) --- */
+.area-card[data-tema="miles"] {
+    border-color: #e62429;
+}
+
+.area-card[data-tema="miles"] .rotulo {
+    color: #ffffff;
+    background: linear-gradient(90deg, #8a0b0f, #e62429, #8a0b0f);
+}
+
+.area-card[data-tema="miles"]:hover {
+    box-shadow: 0 16px 44px rgba(230, 36, 41, 0.5);
+}
+
+
+/* --- MATEMÁTICA: Superior (vermelho técnico) --- */
+.area-card[data-tema="superior"] {
+    border-color: #c1121f;
+}
+
+.area-card[data-tema="superior"] img {
+    filter: saturate(0.9) brightness(0.94);
+}
+
+.area-card[data-tema="superior"] .rotulo {
+    color: #f2f2f2;
+    background: linear-gradient(90deg, #1c1c1c, #c1121f, #1c1c1c);
+}
+
+.area-card[data-tema="superior"]:hover {
+    box-shadow: 0 16px 44px rgba(193, 18, 31, 0.5);
+}
+
+
+/* --- SENAI: 2099 (neon azul/vermelho) --- */
+.area-card[data-tema="2099"] {
+    border-color: #20c8ff;
+}
+
+.area-card[data-tema="2099"] .rotulo {
+    color: #ffffff;
+    background: linear-gradient(90deg, #062a4e, #20c8ff, #062a4e);
+}
+
+.area-card[data-tema="2099"] .rotulo small {
+    color: #ff8a8a;
+}
+
+.area-card[data-tema="2099"] img {
+    filter: saturate(1.15);
+}
+
+.area-card[data-tema="2099"]:hover {
+    border-color: #ff2e6a;
+    box-shadow:
+        0 16px 44px rgba(32, 200, 255, 0.4),
+        0 0 0 1px rgba(255, 46, 106, 0.5);
+}
+
+
+/* ==========================================================
+   ANEXOS — MURAL DE FOTOS
+   ========================================================== */
+
+.anexos-section {
+    width: 92%;
+    max-width: 1200px;
+    margin: 20px auto 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.anexos-titulo {
+    font-family: "Bangers", Impact, sans-serif;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: center;
+    padding: 18px 84px 0;
+    margin: 0;
+    font-size: clamp(26px, 6vw, 52px);
+    line-height: 1.2;
+    text-shadow: 3px 3px 0 #d90429;
+}
+
+.anexos-sub {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: "Oswald", Arial, sans-serif;
+    letter-spacing: 1.5px;
+    margin: 0 0 34px;
+}
+
+.anexos-mural {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px;
+}
+
+.anexo-card {
+    width: 260px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px 12px 14px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+    transform: rotate(var(--rot, -2deg));
+    transition: all 0.3s ease;
+}
+
+.anexo-card:nth-child(even) {
+    --rot: 2deg;
+}
+
+.anexo-card:hover {
+    transform: rotate(0deg) scale(1.05) translateY(-6px);
+    box-shadow: 0 0 0 3px #d90429, 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+.anexo-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    cursor: pointer;
+}
+
+.anexo-card .legenda {
+    margin-top: 10px;
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    color: #111111;
+    letter-spacing: 0.5px;
+}
+
+
+/* ==========================================================
+   SETA VOLTAR
+   ========================================================== */
+
+.seta-voltar {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+    background-color: #d90429;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(217, 4, 41, 0.5);
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.seta-voltar:hover {
+    background-color: #ffffff;
+    color: #d90429;
+    transform: translateY(-50%) scale(1.1) rotate(-360deg);
+}
+
+
+/* ==========================================================
+   MASCOTE
+   ========================================================== */
+
+#mascote-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+}
+
+#mascote-balao {
+    max-width: 240px;
+    background: #ffffff;
+    color: #111111;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 3px solid #d90429;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+}
+
+#mascote-balao.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#mascote-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform .2s ease;
+}
+
+#mascote-btn:hover {
+    transform: scale(1.05);
+}
+
+#mascote-btn img {
+    width: 120px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
+    animation: mascoteFlutuar 3s ease-in-out infinite;
+}
+
+@keyframes mascoteFlutuar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 600px) {
+    #mascote-btn img {
+        width: 90px;
+    }
+
+    #mascote-balao {
+        max-width: 180px;
+        font-size: 13px;
+    }
+}

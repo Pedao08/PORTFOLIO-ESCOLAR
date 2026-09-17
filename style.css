@@ -1,0 +1,583 @@
+/* ==========================================================
+   HOMEM-ARANHA CLÁSSICO
+   Terra-616 — Peter Parker
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;500;700&display=swap');
+
+:root {
+    --aranha-vermelho: #d90429;
+    --aranha-vermelho-escuro: #9c051d;
+    --aranha-azul: #123f8c;
+    --aranha-azul-escuro: #0a1e4d;
+    --aranha-preto: #0b0b10;
+    --aranha-branco: #f4f6ff;
+    --teia: rgba(255, 255, 255, 0.07);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: var(--aranha-branco);
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0.4px;
+
+    background:
+        radial-gradient(circle at 15% 90%, rgba(18, 63, 140, 0.35), transparent 45%),
+        radial-gradient(circle at 85% 10%, rgba(217, 4, 41, 0.28), transparent 45%),
+        repeating-linear-gradient(45deg, var(--teia) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(-45deg, var(--teia) 0 1px, transparent 1px 9px),
+        linear-gradient(-120deg, #081630, #0a1e4d, #071028, #0b0b10);
+
+    min-height: 100vh;
+    text-align: center;
+}
+
+
+/* ==========================================================
+   TEIA CANTONEIRA FIXA
+   ========================================================== */
+
+body::before {
+    content: "";
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 65vmin;
+    height: 65vmin;
+    pointer-events: none;
+    z-index: -1;
+
+    background:
+        radial-gradient(circle at 100% 100%, transparent 0 24%, rgba(255, 255, 255, 0.10) 24% 24.6%, transparent 24.8% 40%, rgba(255, 255, 255, 0.10) 40% 40.6%, transparent 40.8% 54%, rgba(255, 255, 255, 0.10) 54% 54.6%, transparent 54.8% 66%, rgba(255, 255, 255, 0.10) 66% 66.6%, transparent 66.8% 76%, rgba(255, 255, 255, 0.10) 76% 76.6%, transparent 76.8%),
+        repeating-radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 10px);
+}
+
+
+/* ==========================================================
+   BARRA DE NAVEGAÇÃO
+   ========================================================== */
+
+nav {
+    width: 100%;
+    min-height: 88px;
+    background:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 8px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 8px),
+        linear-gradient(180deg, var(--aranha-vermelho), var(--aranha-vermelho-escuro));
+
+    border-bottom: 4px solid #ffffff22;
+
+    box-shadow: 0 6px 25px rgba(217, 4, 41, 0.45);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 8px 20px;
+}
+
+
+/* ==========================================================
+   ÁREA DO USUÁRIO
+   ========================================================== */
+
+#area-usuario {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    z-index: 10;
+}
+
+
+#saudacaoUsuario {
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+
+#btnVoltarLogin {
+    border: 2px solid #ffffff99;
+    background-color: var(--aranha-preto);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+
+#btnVoltarLogin:hover {
+    background-color: #ffffff;
+    color: var(--aranha-vermelho);
+    transform: scale(1.05);
+    border-color: #ffffff;
+}
+
+
+/* ==========================================================
+   MENU DE NAVEGAÇÃO
+   ========================================================== */
+
+nav ul {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    white-space: nowrap;
+    width: max-content;
+}
+
+
+nav li {
+    margin: 0;
+    padding: 0;
+}
+
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    position: relative;
+    padding: 4px 2px;
+    transition: color 0.25s ease;
+}
+
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+
+nav a:hover {
+    color: #ffe066;
+    text-shadow: 0 0 12px rgba(255, 224, 102, 0.6);
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* ==========================================================
+   CABEÇALHO
+   ========================================================== */
+
+header {
+    background:
+        radial-gradient(circle at 50% -20%, rgba(18, 63, 140, 0.9), transparent 60%),
+        linear-gradient(180deg, #0b0b10, #0d0d14);
+    padding: 28px 20px 30px;
+    border-bottom: 6px solid var(--aranha-vermelho);
+    box-shadow: inset 0 -60px 80px rgba(217, 4, 41, 0.12);
+}
+
+
+header img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--aranha-branco);
+    outline: 4px solid var(--aranha-vermelho);
+    outline-offset: -1px;
+
+    box-shadow:
+        0 0 0 8px rgba(217, 4, 41, 0.35),
+        0 0 35px rgba(217, 4, 41, 0.55),
+        0 0 90px rgba(18, 63, 140, 0.45);
+}
+
+
+.center {
+    text-align: center;
+}
+
+
+h1 {
+    font-family: "Bangers", "Oswald", Impact, sans-serif;
+    font-size: 64px;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-shadow:
+        3px 3px 0 var(--aranha-vermelho),
+        -2px -2px 0 var(--aranha-azul),
+        0 0 25px rgba(217, 4, 41, 0.6);
+    margin: 22px 0 4px;
+}
+
+
+h2 {
+    font-family: "Bangers", "Oswald", Impact, sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #7ab8ff;
+    text-shadow: 0 0 18px rgba(122, 184, 255, 0.5);
+    margin: 8px 0 16px;
+}
+
+
+h3 {
+    font-family: "Bangers", "Oswald", Impact, sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: #ff5c5c;
+    text-shadow: 0 3px 12px rgba(217, 4, 41, 0.4);
+}
+
+
+/* ==========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================== */
+
+main {
+    width: 80%;
+    margin: 30px auto;
+    position: relative;
+    z-index: 1;
+}
+
+
+section {
+    background: linear-gradient(180deg, rgba(20, 20, 28, 0.92), rgba(12, 12, 18, 0.92));
+    border: 2px solid var(--aranha-vermelho);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        inset 0 0 60px rgba(18, 63, 140, 0.08);
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+
+section::before {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--aranha-vermelho), var(--aranha-azul), transparent);
+    border-radius: 4px;
+}
+
+
+p {
+    margin: 12px 15px;
+    line-height: 1.6;
+    font-size: 17px;
+}
+
+
+strong {
+    color: #ffd0d0;
+}
+
+
+/* ==========================================================
+   IDENTIFICAÇÃO
+   ========================================================== */
+
+.identificacao {
+    margin-bottom: 25px;
+}
+
+.identificacao p {
+    margin: 8px 0;
+    padding-left: 8px;
+    border-left: 3px solid rgba(217, 4, 41, 0.6);
+}
+
+
+/* ==========================================================
+   OBJETIVOS
+   ========================================================== */
+
+.objetivos h3 {
+    text-align: center;
+}
+
+
+.lista-objetivos {
+    margin-top: 10px;
+    padding-left: 22px;
+}
+
+.lista-objetivos li {
+    margin: 8px 0;
+    padding-left: 6px;
+}
+
+.lista-objetivos li::marker {
+    content: "»";
+    color: var(--aranha-vermelho);
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   RODAPÉ
+   ========================================================== */
+
+footer {
+    border-top: 5px solid var(--aranha-vermelho);
+    background: linear-gradient(180deg, #0a0a0f, #050508);
+    padding: 34px 20px 44px;
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 9px);
+    pointer-events: none;
+}
+
+
+.orientadores {
+    text-align: center;
+    margin-left: 5px;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.copyright {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.copyright p {
+    font-size: 14px;
+    color: #b9c2d9;
+}
+
+
+/* ==========================================================
+   MASCOTE
+   ========================================================== */
+
+#mascote-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+}
+
+
+#mascote-balao {
+    max-width: 240px;
+    background: #ffffff;
+    color: #111111;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 3px solid var(--aranha-vermelho);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+
+#mascote-balao.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#mascote-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.2s ease;
+}
+
+
+#mascote-btn:hover {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+
+#mascote-btn img {
+    width: 120px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.4));
+    animation: mascoteFlutuar 3s ease-in-out infinite;
+}
+
+
+@keyframes mascoteFlutuar {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+}
+
+
+/* ==========================================================
+   TABLETS
+   ========================================================== */
+
+@media (max-width: 1100px) {
+    nav {
+        min-height: 110px;
+    }
+
+    #area-usuario {
+        left: 15px;
+    }
+
+    nav ul {
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 15px;
+    }
+}
+
+
+/* ==========================================================
+   CELULARES
+   ========================================================== */
+
+@media (max-width: 850px) {
+    nav {
+        min-height: auto;
+        padding: 12px 10px 18px;
+        flex-direction: column;
+    }
+
+    #area-usuario {
+        position: static;
+        transform: none;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    nav ul {
+        position: static;
+        transform: none;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 18px;
+    }
+
+    nav a {
+        font-size: 15px;
+    }
+}
+
+
+/* ==========================================================
+   CELULARES PEQUENOS
+   ========================================================== */
+
+@media (max-width: 600px) {
+    #saudacaoUsuario {
+        font-size: 16px;
+    }
+
+    #btnVoltarLogin {
+        font-size: 13px;
+        padding: 6px 15px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    header img {
+        width: 200px;
+        height: 200px;
+    }
+
+    main {
+        width: 92%;
+    }
+
+    h1 {
+        font-size: 44px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    #mascote-btn img {
+        width: 90px;
+    }
+
+    #mascote-balao {
+        max-width: 180px;
+        font-size: 13px;
+    }
+}

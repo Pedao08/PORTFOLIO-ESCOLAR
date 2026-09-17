@@ -1,0 +1,321 @@
+/* ==========================================================
+   ARANHA-GWEN — Terra-65
+   Gwen Stacy · Linguagens
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    color: #1d1d24;
+    background:
+        radial-gradient(circle at 85% 10%, rgba(241, 77, 159, 0.20), transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(53, 196, 232, 0.22), transparent 45%),
+        repeating-linear-gradient(45deg, rgba(29, 29, 36, 0.05) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(-45deg, rgba(29, 29, 36, 0.05) 0 1px, transparent 1px 9px),
+        linear-gradient(160deg, #fbfbfd, #eaf7fb, #fdf1f7);
+
+    min-height: 100vh;
+    letter-spacing: 0.3px;
+}
+
+header {
+    position: relative;
+    background:
+        radial-gradient(circle at 20% -40%, rgba(241, 77, 159, 0.55), transparent 55%),
+        radial-gradient(circle at 90% -40%, rgba(53, 196, 232, 0.5), transparent 55%),
+        linear-gradient(180deg, #15151c, #23232e);
+
+    color: white;
+    text-align: center;
+    padding: 34px 20px;
+    border-bottom: 5px solid #f14d9f;
+    box-shadow: 0 10px 30px rgba(241, 77, 159, 0.35);
+}
+
+header h1 {
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 44px;
+    letter-spacing: 3px;
+    margin-top: 12px;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 #f14d9f, -2px -2px 0 #20c4e6;
+}
+
+header p {
+    margin-top: 8px;
+    color: #9fe8ff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 34px auto;
+}
+
+.eixo {
+    background: rgba(255, 255, 255, 0.92);
+    margin-bottom: 30px;
+    padding: 22px;
+    border-radius: 16px;
+    border: 2px solid rgba(241, 77, 159, 0.35);
+    box-shadow:
+        0 12px 30px rgba(29, 29, 36, 0.10),
+        inset 0 0 60px rgba(53, 196, 232, 0.05);
+}
+
+.eixo h2 {
+    margin-bottom: 20px;
+    color: #1d1d24;
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 34px;
+    letter-spacing: 2px;
+    border-left: 6px solid #f14d9f;
+    padding-left: 12px;
+    position: relative;
+}
+
+.eixo h2::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    bottom: -4px;
+    height: 3px;
+    width: 90px;
+    background: linear-gradient(90deg, #35c4e8, transparent);
+    border-radius: 3px;
+}
+
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.galeria img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+}
+
+.card {
+    width: 250px;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 14px;
+    border: 2px solid #e8e8f0;
+    box-shadow: 0 6px 18px rgba(29, 29, 36, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #f14d9f;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(241, 77, 159, 0.25);
+}
+
+.card p {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: left;
+}
+
+.info-card h3 {
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 21px;
+    letter-spacing: 1px;
+    line-height: 1.15;
+    color: #1d1d24;
+    margin: 10px 0 6px;
+    text-align: left;
+}
+
+.info-card strong {
+    color: #e0207f;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #f14d9f;
+    outline: 2px solid #35c4e8;
+    outline-offset: 2px;
+}
+
+.seta-voltar {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+    background-color: #1d1d24;
+    border: 2px solid #f14d9f;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(241, 77, 159, 0.45);
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.seta-voltar:hover {
+    background-color: #f14d9f;
+    border-color: #35c4e8;
+    transform: translateY(-50%) rotate(-360deg) scale(1.1);
+}
+
+.rotation {
+    transform: rotate(-90deg);
+}
+
+a {
+    text-decoration: none;
+}
+
+.eixo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: #e0207f;
+}
+
+.eixo-link:visited {
+    color: #e0207f;
+}
+
+.eixo-link h2 {
+    display: inline;
+    margin: 0;
+}
+
+.eixo-link::after {
+    content: "Ver atividade escolhida ↗";
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #e0207f;
+    background: #fdeef6;
+    border: 1px solid #f7bfdb;
+    border-radius: 999px;
+    padding: 4px 12px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.eixo-link:hover {
+    background: rgba(241, 77, 159, 0.08);
+}
+
+.eixo-link:hover h2 {
+    transform: translateX(3px);
+    color: #e0207f;
+}
+
+.eixo-link:hover::after {
+    background: #f14d9f;
+    color: #ffffff;
+}
+
+#mascote-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+}
+
+#mascote-balao {
+    max-width: 240px;
+    background: #ffffff;
+    color: #111111;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 3px solid #f14d9f;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+}
+
+#mascote-balao.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#mascote-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform .2s ease;
+}
+
+#mascote-btn:hover {
+    transform: scale(1.05);
+}
+
+#mascote-btn img {
+    width: 120px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    animation: mascoteFlutuar 3s ease-in-out infinite;
+}
+
+@keyframes mascoteFlutuar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 600px) {
+    #mascote-btn img {
+        width: 90px;
+    }
+
+    #mascote-balao {
+        max-width: 180px;
+        font-size: 13px;
+    }
+
+    header h1 {
+        font-size: 34px;
+    }
+}

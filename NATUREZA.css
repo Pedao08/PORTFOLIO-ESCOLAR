@@ -1,0 +1,329 @@
+/* ==========================================================
+   MILES MORALES — Terra-1610
+   O Homem-Aranha de Brooklyn · Natureza
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    color: #f0f0f0;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(230, 36, 41, 0.25), transparent 50%),
+        radial-gradient(circle at 15% 85%, rgba(230, 36, 41, 0.18), transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 9px),
+        linear-gradient(180deg, #0c0c0e, #17171c, #0c0c0e);
+
+    min-height: 100vh;
+    letter-spacing: 0.3px;
+}
+
+/* spray de graffiti */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 22% 78%, rgba(230, 36, 41, 0.16) 0 6%, transparent 7%),
+        radial-gradient(circle at 26% 82%, rgba(230, 36, 41, 0.10) 0 9%, transparent 10%),
+        radial-gradient(circle at 88% 30%, rgba(230, 36, 41, 0.12) 0 5%, transparent 6%);
+    z-index: 0;
+}
+
+header {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% -40%, rgba(230, 36, 41, 0.55), transparent 55%),
+        radial-gradient(circle at 85% -20%, rgba(230, 36, 41, 0.35), transparent 45%),
+        linear-gradient(180deg, #0a0a0c, #141419);
+
+    color: white;
+    text-align: center;
+    padding: 34px 20px;
+    border-bottom: 6px solid #e62429;
+    box-shadow: 0 0 40px rgba(230, 36, 41, 0.45);
+}
+
+header h1 {
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 48px;
+    letter-spacing: 3px;
+    margin-top: 14px;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 #e62429, 0 0 20px rgba(230, 36, 41, 0.7);
+}
+
+header p {
+    margin-top: 8px;
+    color: #ffb3b3;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
+header p::after {
+    content: " · Brooklyn";
+    color: #e62429;
+    font-weight: 700;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 34px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.eixo {
+    background:
+        linear-gradient(180deg, #1a1a20, #141418);
+    margin-bottom: 30px;
+    padding: 22px;
+    border-radius: 14px;
+    border: 2px solid rgba(230, 36, 41, 0.55);
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.55),
+        inset 0 0 70px rgba(230, 36, 41, 0.05);
+}
+
+.eixo h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    border-left: 6px solid #e62429;
+    padding-left: 12px;
+    text-shadow: 0 3px 0 rgba(230, 36, 41, 0.6);
+}
+
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.galeria img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+}
+
+.card {
+    width: 250px;
+    text-align: center;
+    background-color: #101014;
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(230, 36, 41, 0.4);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #e62429;
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(230, 36, 41, 0.4);
+}
+
+.card p {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #d9d9e0;
+    text-align: left;
+}
+
+.info-card h3 {
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 21px;
+    letter-spacing: 1px;
+    line-height: 1.15;
+    color: #ffffff;
+    margin: 10px 0 6px;
+    text-align: left;
+}
+
+.info-card strong {
+    color: #ff5c5c;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #e62429;
+    box-shadow: 0 0 14px rgba(230, 36, 41, 0.4);
+}
+
+.seta-voltar {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+    background-color: #0a0a0c;
+    border: 2px solid #e62429;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(230, 36, 41, 0.5);
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.seta-voltar:hover {
+    background-color: #e62429;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 34px rgba(230, 36, 41, 0.9);
+}
+
+a {
+    text-decoration: none;
+}
+
+.eixo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: #ff5c5c;
+}
+
+.eixo-link:visited {
+    color: #ff5c5c;
+}
+
+.eixo-link h2 {
+    display: inline;
+    margin: 0;
+}
+
+.eixo-link::after {
+    content: "Ver atividade escolhida ↗";
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #ffb3b3;
+    background: rgba(230, 36, 41, 0.12);
+    border: 1px solid rgba(230, 36, 41, 0.5);
+    border-radius: 999px;
+    padding: 4px 12px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.eixo-link:hover {
+    background: rgba(230, 36, 41, 0.15);
+}
+
+.eixo-link:hover h2 {
+    transform: translateX(3px);
+    color: #ff7777;
+}
+
+.eixo-link:hover::after {
+    background: #e62429;
+    color: #ffffff;
+}
+
+#mascote-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+}
+
+#mascote-balao {
+    max-width: 240px;
+    background: #ffffff;
+    color: #111111;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 3px solid #e62429;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+}
+
+#mascote-balao.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#mascote-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform .2s ease;
+}
+
+#mascote-btn:hover {
+    transform: scale(1.05);
+}
+
+#mascote-btn img {
+    width: 120px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 18px rgba(230, 36, 41, 0.35));
+    animation: mascoteFlutuar 3s ease-in-out infinite;
+}
+
+@keyframes mascoteFlutuar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 600px) {
+    #mascote-btn img {
+        width: 90px;
+    }
+
+    #mascote-balao {
+        max-width: 180px;
+        font-size: 13px;
+    }
+
+    header h1 {
+        font-size: 36px;
+    }
+}

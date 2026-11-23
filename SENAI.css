@@ -351,3 +351,23 @@ a {
         letter-spacing: 3px;
     }
 }
+
+/* Espaço reservado para a imagem das atividades do Eixo IV */
+.imagem-vazia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 180px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 2px dashed rgba(32, 200, 255, 0.6);
+    border-radius: 10px;
+    background: #060b16;
+    color: #b7ecff;
+    font-family: "Orbitron", Impact, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+}

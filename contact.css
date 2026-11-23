@@ -1,8 +1,16 @@
 /* ==========================================================
-   HOMEM-ARANHA CLÁSSICO — Contatos
+   HOMEM-ARANHA CLÁSSICO — Currículo / Contatos
    ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;500;700&display=swap');
+
+:root {
+    --vermelho: #d90429;
+    --vermelho-escuro: #9c051d;
+    --azul: #123f8c;
+    --preto: #0b0b10;
+    --branco: #f4f6ff;
+}
 
 * {
     margin: 0;
@@ -11,7 +19,7 @@
 }
 
 body {
-    color: white;
+    color: var(--branco);
     text-align: center;
     font-family: "Oswald", "Segoe UI", Arial, sans-serif;
     letter-spacing: 0.4px;
@@ -32,20 +40,24 @@ body::before {
     width: 65vmin;
     height: 65vmin;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
     background:
         radial-gradient(circle at 100% 100%, transparent 0 24%, rgba(255, 255, 255, 0.08) 24% 24.6%, transparent 24.8% 40%, rgba(255, 255, 255, 0.08) 40% 40.6%, transparent 40.8% 54%, rgba(255, 255, 255, 0.08) 54% 54.6%, transparent 54.8% 66%, rgba(255, 255, 255, 0.08) 66% 66.6%, transparent 66.8% 76%, rgba(255, 255, 255, 0.08) 76% 76.6%, transparent 76.8%);
-    z-index: 0;
 }
+
+/* ==========================================================
+   TOPO
+   ========================================================== */
 
 .topo {
     background:
         repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 8px),
         repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 8px),
-        linear-gradient(180deg, #d90429, #9c051d);
+        linear-gradient(180deg, var(--vermelho), var(--vermelho-escuro));
 
-    padding: 20px;
+    padding: 24px 20px;
     position: relative;
+    z-index: 1;
     text-align: center;
     border-bottom: 4px solid #ffffff33;
     box-shadow: 0 6px 25px rgba(217, 4, 41, 0.5);
@@ -54,7 +66,7 @@ body::before {
 .seta-voltar {
     color: white;
     text-decoration: none;
-    background-color: #0b0b10;
+    background-color: var(--preto);
     border: 2px solid #ffffff;
     border-radius: 50%;
     position: absolute;
@@ -74,11 +86,11 @@ body::before {
 
 .seta-voltar:hover {
     background-color: #ffffff;
-    color: #d90429;
+    color: var(--vermelho);
     transform: translateY(-50%) rotate(-360deg);
 }
 
-h1 {
+.topo h1 {
     font-family: "Bangers", Impact, sans-serif;
     font-size: 46px;
     letter-spacing: 4px;
@@ -86,29 +98,186 @@ h1 {
     text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
 }
 
-.caixa-principal {
-    width: 80%;
-    max-width: 800px;
-    margin: 30px auto;
+.topo-subtitulo {
+    margin-top: 4px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #ffe9ed;
+}
+
+/* ==========================================================
+   ESTRUTURA DO CURRÍCULO
+   ========================================================== */
+
+.curriculo {
+    width: min(92%, 1000px);
+    margin: 0 auto;
+    padding: 36px 0 60px;
     position: relative;
     z-index: 1;
+}
+
+.bloco {
+    background: linear-gradient(180deg, rgba(20, 20, 28, 0.92), rgba(12, 12, 18, 0.92));
+    border: 2px solid rgba(217, 4, 41, 0.75);
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 28px;
+    text-align: left;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+}
+
+.titulo-secao {
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: #ff5c5c;
+    margin-bottom: 22px;
+    text-shadow: 0 3px 12px rgba(217, 4, 41, 0.4);
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.bloco h3 {
+    font-family: "Oswald", "Segoe UI", Arial, sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.bloco p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e8ecf7;
+    letter-spacing: 0.6px;
+}
+
+/* ==========================================================
+   PERFIL
+   ========================================================== */
+
+.perfil {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    border-color: var(--azul);
+}
+
+.foto-perfil img {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffffff;
+    outline: 3px solid var(--vermelho);
+    outline-offset: 3px;
+    box-shadow: 0 0 30px rgba(217, 4, 41, 0.45);
+}
+
+.perfil-info {
+    flex: 1;
+}
+
+.perfil-info h2 {
+    font-family: "Bangers", Impact, sans-serif;
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.perfil-info .cargo {
+    color: #ff8a8a;
+    font-size: 18px;
+    margin: 4px 0 14px;
+}
+
+.perfil-info .resumo {
+    margin-bottom: 16px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags span {
+    background: rgba(18, 63, 140, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   EXPERIÊNCIAS
+   ========================================================== */
+
+.timeline {
+    border-left: 3px solid var(--vermelho);
+    padding-left: 26px;
+    margin-left: 10px;
+}
+
+.experiencia {
+    position: relative;
+    padding-bottom: 26px;
+}
+
+.experiencia:last-child {
+    padding-bottom: 0;
+}
+
+.experiencia::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 6px;
+    width: 15px;
+    height: 15px;
+    background: var(--vermelho);
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(217, 4, 41, 0.8);
+}
+
+.periodo {
+    display: inline-block;
+    color: #ff8a8a;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.experiencia h3 {
+    margin-bottom: 6px;
+}
+
+/* ==========================================================
+   CONTATOS
+   ========================================================== */
+
+.caixa-principal {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 22px;
 }
 
 .contato {
     background: linear-gradient(180deg, rgba(20, 20, 28, 0.94), rgba(12, 12, 18, 0.94));
-    border: 2px solid #d90429;
+    border: 2px solid var(--vermelho);
     border-radius: 14px;
     padding: 24px 20px;
     transition: all 0.3s ease;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .contato:hover {
     transform: translateY(-6px);
-    border-color: #123f8c;
+    border-color: var(--azul);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(18, 63, 140, 0.5);
 }
 
@@ -119,11 +288,11 @@ h1 {
 }
 
 .contato img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     border: 4px solid #ffffff;
-    outline: 3px solid #d90429;
+    outline: 3px solid var(--vermelho);
     outline-offset: -1px;
     box-shadow: 0 0 25px rgba(217, 4, 41, 0.5);
     object-fit: cover;
@@ -134,21 +303,110 @@ h1 {
     transform: scale(1.08) rotate(-4deg);
 }
 
-h2 {
+.contato h3 {
     font-family: "Bangers", Impact, sans-serif;
-    font-size: 28px;
+    font-size: 26px;
     letter-spacing: 2.5px;
     color: #ff5c5c;
-    margin: 16px 0 6px;
+    margin: 14px 0 6px;
     text-shadow: 0 3px 12px rgba(217, 4, 41, 0.4);
 }
 
-p {
-    margin: 8px 0;
-    font-size: 16px;
-    color: #e8ecf7;
-    letter-spacing: 1px;
+/* ==========================================================
+   LOCALIZAÇÃO
+   ========================================================== */
+
+.localizacao {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: rgba(18, 63, 140, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    padding: 24px;
 }
+
+.pin {
+    font-size: 46px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.localizacao h3 {
+    margin-bottom: 8px;
+}
+
+.link-mapa {
+    display: inline-block;
+    margin-top: 12px;
+    color: #ffffff;
+    text-decoration: none;
+    background: var(--vermelho);
+    border: 2px solid #ffffff55;
+    border-radius: 24px;
+    padding: 8px 22px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.link-mapa:hover {
+    background: var(--azul);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   CONSIDERAÇÕES FINAIS
+   ========================================================== */
+
+.consideracoes {
+    border-color: var(--azul);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(217, 4, 41, 0.18), transparent 55%),
+        linear-gradient(180deg, rgba(20, 20, 28, 0.94), rgba(12, 12, 18, 0.94));
+}
+
+.consideracoes .titulo-grande {
+    font-size: 46px;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 26px;
+    text-align: center;
+}
+
+.texto-consideracoes p {
+    margin-bottom: 14px;
+    font-size: 17px;
+}
+
+.texto-consideracoes .assinatura {
+    color: #ff8a8a;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 22px;
+    margin-bottom: 0;
+}
+
+/* ==========================================================
+   RODAPÉ
+   ========================================================== */
+
+footer {
+    position: relative;
+    z-index: 1;
+    padding: 22px;
+    background: rgba(0, 0, 0, 0.45);
+    border-top: 3px solid rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+
+/* ==========================================================
+   MASCOTE
+   ========================================================== */
 
 #mascote-widget {
     position: fixed;
@@ -168,7 +426,7 @@ p {
     color: #111111;
     padding: 12px 14px;
     border-radius: 16px;
-    border: 3px solid #d90429;
+    border: 3px solid var(--vermelho);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     font-family: "Oswald", Arial, sans-serif;
     font-size: 14px;
@@ -210,18 +468,31 @@ p {
     50% { transform: translateY(-6px); }
 }
 
+/* ==========================================================
+   RESPONSIVO
+   ========================================================== */
+
 @media (max-width: 700px) {
-    .caixa-principal {
-        width: 92%;
+    .topo h1 {
+        font-size: 38px;
     }
 
-    .seta-voltar {
-        top: 50%;
-        transform: translateY(-50%);
+    .bloco {
+        padding: 22px 18px;
     }
 
-    .seta-voltar:hover {
-        transform: translateY(-50%) rotate(-360deg);
+    .consideracoes .titulo-grande {
+        font-size: 38px;
+    }
+
+    .perfil {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .foto-perfil img {
+        width: 150px;
+        height: 150px;
     }
 }
 
@@ -235,7 +506,29 @@ p {
         font-size: 13px;
     }
 
-    h1 {
-        font-size: 38px;
+    .topo-subtitulo {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .perfil-info h2 {
+        font-size: 34px;
+    }
+
+    .titulo-secao {
+        font-size: 28px;
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .experiencia::before {
+        left: -28px;
+    }
+
+    .localizacao {
+        flex-direction: column;
+        text-align: center;
     }
 }
